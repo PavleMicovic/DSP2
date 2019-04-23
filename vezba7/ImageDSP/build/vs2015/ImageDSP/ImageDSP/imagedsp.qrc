@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 <RCC>
     <qresource prefix="ImageDSP">
     </qresource>
 </RCC>
+=======
+<RCC>
+    <qresource prefix="ImageDSP">
+    </qresource>
+</RCC>
+>>>>>>> 646bf45577255791b5e9675e9e1a7004955f6a66

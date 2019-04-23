@@ -35,8 +35,13 @@ void calculateHistogram(const uchar input[], int xSize, int ySize, int histogram
 	int i, j;
 	for (i = 0; i < 256;i++)
 		histogram[i]= 0;
+<<<<<<< HEAD
 	for (i = 0; i < xSize; i++)
 		for (j = 0; j < ySize; j++)
+=======
+	for (i = 0; i < xSize; i++)
+		for (j = 0; j < ySize; j++)
+>>>>>>> 646bf45577255791b5e9675e9e1a7004955f6a66
 			histogram[input[j * xSize + i]]++;
 }
 
@@ -52,10 +57,17 @@ void equalizeHistogram(const uchar input[], int xSize, int ySize, uchar output[]
 	calculateHistogram(input, xSize, ySize, histogram);
 
 	int sum = 0, cdf[256];
+<<<<<<< HEAD
 	for (i = 0; i < 256; i++)
 	{
 		sum += histogram[i];
 		cdf[i] = sum;
+=======
+	for (i = 0; i < 256; i++)
+	{
+		sum += histogram[i];
+		cdf[i] = sum;
+>>>>>>> 646bf45577255791b5e9675e9e1a7004955f6a66
 	}
 
 	i = 0;
@@ -63,7 +75,11 @@ void equalizeHistogram(const uchar input[], int xSize, int ySize, uchar output[]
 		i++;
 	int minimum = cdf[i];
 
+<<<<<<< HEAD
 	for (i = 0; i < xSize; i++)
+=======
+	for (i = 0; i < xSize; i++)
+>>>>>>> 646bf45577255791b5e9675e9e1a7004955f6a66
 		for (j = 0; j < ySize; j++)
 		{
 			output[j*xSize + i] = round(L*(cdf[input[j*xSize+i]]-minimum)/((xSize*ySize)-minimum));
@@ -77,6 +93,7 @@ void modifySaturation(const uchar inputRGB[], const uchar inputY[], int xSize, i
 {
 	/* TODO */
 	double r, g, b;
+<<<<<<< HEAD
 	for (int j = 0; j < ySize; j++)
 	{
 		for (int i = 0; i < xSize; i++)
@@ -123,6 +140,54 @@ void modifySaturation(const uchar inputRGB[], const uchar inputY[], int xSize, i
 				outputRGB[j*xSize * 3 + i * 3 + 2] = inputRGB[j*xSize * 3 + i * 3 + 2] * S + inputY[j*xSize + i] * (1 - S);
 			}
 		}
+=======
+	for (int j = 0; j < ySize; j++)
+	{
+		for (int i = 0; i < xSize; i++)
+		{
+			r = inputRGB[j*xSize * 3 + i * 3] * S + inputY[j*xSize + i] * (1 - S);
+			g= inputRGB[j*xSize * 3 + i * 3+1] * S + inputY[j*xSize + i] * (1 - S);
+			b = inputRGB[j*xSize * 3 + i * 3 + 2] * S + inputY[j*xSize + i] * (1 - S);
+			if (r > 255)
+			{
+				outputRGB[j*xSize * 3 + i * 3] = 255;
+			}
+			else if (r< 0)
+			{
+				outputRGB[j*xSize * 3 + i * 3] = 0;
+			}
+			else
+			{
+				outputRGB[j*xSize * 3 + i * 3] = inputRGB[j*xSize * 3 + i * 3] * S + inputY[j*xSize + i] * (1 - S);
+			}
+
+			if (g > 255)
+			{
+				outputRGB[j*xSize * 3 + i * 3+1] = 255;
+			}
+			else if (g< 0)
+			{
+				outputRGB[j*xSize * 3 + i * 3+1] = 0;
+			}
+			else
+			{
+				outputRGB[j*xSize * 3 + i * 3+1] = inputRGB[j*xSize * 3 + i * 3+1] * S + inputY[j*xSize + i] * (1 - S);
+			}
+
+			if (b > 255)
+			{
+				outputRGB[j*xSize * 3 + i * 3 + 2] = 255;
+			}
+			else if (b< 0)
+			{
+				outputRGB[j*xSize * 3 + i * 3 + 2] = 0;
+			}
+			else
+			{
+				outputRGB[j*xSize * 3 + i * 3 + 2] = inputRGB[j*xSize * 3 + i * 3 + 2] * S + inputY[j*xSize + i] * (1 - S);
+			}
+		}
+>>>>>>> 646bf45577255791b5e9675e9e1a7004955f6a66
 	}
 }
 
